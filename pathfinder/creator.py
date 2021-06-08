@@ -113,7 +113,6 @@ def expand_maze(grid, screenx, screeny):
     sides_to_expand = tuple(int(x) for x in sides_to_expand.split(","))
     i = 1
     for side in sides_to_expand:
-        print(i)
         i_side = int(str(side).lstrip('-+'))
         for action in range(i_side):
             grid_width = len(grid[0])
@@ -147,8 +146,6 @@ def expand_maze(grid, screenx, screeny):
                 else:
                     grid.pop(position)
         i += 1
-    for thingy in grid:
-        print(thingy)
     width_iter, height_iter = (screenx / len(grid[0]), screeny / len(grid))
     return grid, width_iter, height_iter
 
@@ -168,6 +165,7 @@ def edit_maze():
     width_iter, height_iter, screen_width, screen_height, screen = show_maze(grid)
     pg.display.update()
     new_grid = grid
+    message = "Press 'E' to edit borders, 'Lmb' to place a wall, 'Rmb' to erase,\n'S' to save, 'Z' to place the starting point, and 'X' to place an exit. "
     while True: #While loop that constantly checks for events
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -204,5 +202,5 @@ def edit_maze():
                 elif key == pg.K_e:
                     new_grid, width_iter, height_iter = expand_maze(new_grid, screen_width, screen_height)
                     refresh(new_grid, width_iter, height_iter, screen, screen_width, screen_height)
-
-edit_maze()
+                elif key == pg.K_h:
+                    print(message)
