@@ -1,12 +1,8 @@
-import creator
-from backend import *
-
+from backend import mazegame
+from creator import edit_maze
 print("<-- WELCOME TO generic maze game!!! -->\n")
-choice = input("Would you like to play or edit/create a maze? (p/e): ")
-if (choice == 'p'):
-    # Play the damn game
-    # Ask about which map they want to use
-    # Somehow displau that map
-    pass
-elif (choice == 'e'):
-    creator.edit_maze()
+choice = input("Would you like to play or enter the maze creator?: ")
+if (choice == 'play'):
+    mazegame.__init__(mazegame)
+elif (choice == 'creator'):
+    edit_maze()
